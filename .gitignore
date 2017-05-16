@@ -1,0 +1,13 @@
+# IntelliJ
+.idea
+*.iml
+
+# Node
+node_modules
+target/
+*.log
+
+# Build artifacts
+.nyc_output
+lib
+staging
