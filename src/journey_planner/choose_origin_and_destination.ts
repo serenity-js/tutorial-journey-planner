@@ -1,6 +1,5 @@
 import { protractor } from 'protractor';
-import { Enter, Hit, Is, Target, Wait } from 'serenity-js/lib/serenity-protractor';
-import { Task } from 'serenity-js/lib/serenity/screenplay';
+import { Enter, Hit, Is, Target, Task, Wait } from 'serenity-js/lib/screenplay-protractor';
 
 import { JourneyPlanner } from './ui';
 
@@ -9,10 +8,12 @@ export const ChooseOrigin = { of: (origin: string) => Task.where(`#actor wants t
     PickTheFirstSuggestion.of(JourneyPlanner.Origin_Field).from(JourneyPlanner.Origin_Suggestions),
 )};
 
-export const ChooseDestination = { of: (destination: string) => Task.where(`#actor wants to travel to ${destination}`,
-    Enter.theValue(destination).into(JourneyPlanner.Destination_Field),
-    PickTheFirstSuggestion.of(JourneyPlanner.Destination_Field).from(JourneyPlanner.Destination_Suggestions),
-)};
+export const ChooseDestination = {
+    of: (destination: string) => Task.where(`#actor wants to travel to ${destination}`,
+        Enter.theValue(destination).into(JourneyPlanner.Destination_Field),
+        PickTheFirstSuggestion.of(JourneyPlanner.Destination_Field).from(JourneyPlanner.Destination_Suggestions),
+    ),
+};
 
 const PickTheFirstSuggestion = {
     of: (field: Target) => ({

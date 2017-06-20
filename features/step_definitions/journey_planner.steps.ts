@@ -5,14 +5,13 @@ import {
     ChooseOrigin,
     ChooseTime,
     ConfirmSelection,
+    containTrainsDepartingAt,
     SpecifyPreferences,
 } from '../../src/journey_planner';
 
-import { Navigate, PlanAJourney } from '../../src';
+import { PlanAJourney } from '../../src';
 
 import { following } from '../../src/text';
-
-import { containTrainsDepartingAt } from '../../src/journey_planner/questions/journeys_found';
 
 export = function journeyPlannerSteps() {
 
@@ -56,7 +55,7 @@ export = function journeyPlannerSteps() {
 
             // Wait.until(JourneyPlanner.Results, Is.visible()),
             // Scroll.to(JourneyPlanner.Results),
-            // See.if(Journeys.found(), containTrainsDepartingAt(following(departureTimes))),
+            // See.if(JourneysFound(), containTrainsDepartingAt(following(departureTimes))),
         );
     });
 };

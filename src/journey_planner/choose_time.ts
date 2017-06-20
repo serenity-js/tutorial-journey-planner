@@ -1,5 +1,4 @@
-import { Click, Select } from 'serenity-js/lib/serenity-protractor';
-import { Task } from 'serenity-js/lib/serenity/screenplay';
+import { Click, Select, Task } from 'serenity-js/lib/screenplay-protractor';
 import { JourneyPlanner } from './ui';
 
 export const ChooseTime = {

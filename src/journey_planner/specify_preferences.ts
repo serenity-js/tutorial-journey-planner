@@ -1,5 +1,4 @@
-import { Click } from 'serenity-js/lib/serenity-protractor';
-import { PerformsTasks, Task } from 'serenity-js/lib/serenity/screenplay';
+import { Click, PerformsTasks, Task } from 'serenity-js/lib/screenplay-protractor';
 import { JourneyPlanner } from './ui';
 
 export class SpecifyPreferences implements Task {

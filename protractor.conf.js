@@ -1,8 +1,21 @@
+const
+    glob         = require('glob'),
+    protractor   = require.resolve('protractor'),
+    node_modules = protractor.substring(0, protractor.lastIndexOf('node_modules') + 'node_modules'.length),
+    seleniumJar  = glob.sync(`${node_modules}/protractor/**/selenium-server-standalone-*.jar`).pop();
+
 exports.config = {
 
     baseUrl: 'https://tfl.gov.uk',
 
+    seleniumServerJar: seleniumJar,
+
     allScriptsTimeout: 110000,
+
+    disableChecks: true,
+
+    // https://github.com/protractor-cucumber-framework/protractor-cucumber-framework#uncaught-exceptions
+    ignoreUncaughtExceptions: true,
 
     framework: 'custom',
     frameworkPath: require.resolve('serenity-js'),
@@ -18,9 +31,13 @@ exports.config = {
         browserName: 'chrome',
         chromeOptions: {
             args: [
-                // 'incognito',
-                // 'disable-extensions',
-                // 'show-fps-counter=true'
+                '--disable-infobars',
+                // "--headless",
+                // "--disable-gpu",
+                // "--window-size=1024x768"
+                // '--incognito',
+                // '--disable-extensions',
+                // '--show-fps-counter=true'
             ]
         }
     }

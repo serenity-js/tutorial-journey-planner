@@ -1,6 +1,4 @@
-import { Click } from 'serenity-js/lib/serenity-protractor';
-import { step } from 'serenity-js/lib/serenity/recording';
-import { PerformsTasks, Task } from 'serenity-js/lib/serenity/screenplay';
+import { Click, PerformsTasks, step, Task } from 'serenity-js/lib/screenplay-protractor';
 
 import { JourneyPlannerPreferences } from './ui/journey_planner_preferences';
 

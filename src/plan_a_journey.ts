@@ -1,15 +1,14 @@
-import { step } from 'serenity-js/lib/serenity/recording';
-import { PerformsTasks, Task } from 'serenity-js/lib/serenity/screenplay';
+import { PerformsTasks, step, Task } from 'serenity-js/lib/screenplay-protractor';
 import {
     AvoidTravelling,
     ChooseDestination,
     ChooseOrigin,
     ChooseTime,
     ConfirmSelection,
+    OpenJourneyPlanner,
     SpecifyPreferences,
 } from './journey_planner';
 
-import { Navigate } from './navigate';
 import { following } from './text';
 
 export class PlanAJourney implements Task {
@@ -39,7 +38,7 @@ export class PlanAJourney implements Task {
     @step('#actor plans a journey')
     performAs(actor: PerformsTasks): PromiseLike<void> {
         return actor.attemptsTo(
-            Navigate.to('https://tfl.gov.uk/'),
+            OpenJourneyPlanner(),
             ...this.tasks,
             ConfirmSelection(),
         );
