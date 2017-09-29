@@ -1,6 +1,6 @@
-import { BrowseTheWeb, Question, Target, UsesAbilities } from 'serenity-js/lib/screenplay-protractor';
+import { BrowseTheWeb, Question } from 'serenity-js/lib/screenplay-protractor';
 
-import { by } from 'protractor';
+import { by, ElementFinder } from 'protractor';
 import { expect } from '../expect';
 import { JourneyResults } from './ui/journey_results';
 
@@ -12,11 +12,22 @@ export interface JourneySummary {
 export const JourneysFound = () => Question.where(`#actor checks the results`, actor =>
 
     BrowseTheWeb.as(actor).locateAll(JourneyResults.List).
-        map(result => result.all(by.css('.time-boxes .time-box .time')).getText().then(times => ({
-            departureTime: times[0],
-            arrivalTime:   times[1],
-        }))) as PromiseLike<JourneySummary[]>,
+        map(resultsToJourneySummaries) as PromiseLike<JourneySummary[]>,
 );
+
+function resultsToJourneySummaries(result: ElementFinder) {
+    return result.all(by.css('.time-boxes .time-box .time')).getText().then(individualResultToJourneySummary);
+}
+
+function individualResultToJourneySummary(text: string): JourneySummary {
+    const summaryFormat = /(\d{2}:\d{2})/gi;
+    const times         = text[0].match(summaryFormat);
+
+    return ({
+        departureTime: times[0],
+        arrivalTime:   times[1],
+    });
+}
 
 export const containTrainsDepartingAt = (expectedDepartureTimes: string[]) => foundJourneys => {
     return foundJourneys.then(journeys => {

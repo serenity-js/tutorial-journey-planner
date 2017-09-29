@@ -1,4 +1,5 @@
 const
+    crew         = require('serenity-js/lib/stage_crew');
     glob         = require('glob'),
     protractor   = require.resolve('protractor'),
     node_modules = protractor.substring(0, protractor.lastIndexOf('node_modules') + 'node_modules'.length),
@@ -19,6 +20,20 @@ exports.config = {
 
     framework: 'custom',
     frameworkPath: require.resolve('serenity-js'),
+
+    serenity: {
+        crew: [
+            crew.serenityBDDReporter(),
+
+            // crew.photographer()
+
+            crew.Photographer.who(_ => _
+                .takesPhotosOf(_.Failures)
+            )
+
+            // crew.consoleReporter()
+        ]
+    },
 
     specs: [ 'features/**/*.feature' ],
     cucumberOpts: {

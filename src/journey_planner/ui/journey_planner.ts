@@ -15,7 +15,8 @@ export const JourneyPlanner = {
 
     Edit_Preferences_Link: Target.the('Edit preferences link').located(by.linkText('Edit preferences')),
 
-    Plan_My_Journey: Target.the('"Plan my journey" button').located(by.buttonText('Plan my journey')),
+    // Plan_My_Journey: Target.the('"Plan my journey" button').located(by.buttonText('Plan my journey')),
+    Plan_My_Journey: Target.the('"Plan my journey" button').located(by.xpath('(//input[@type="submit"][contains(@value, "Plan my journey")])[2]')),
 
     Results: Target.the('results').located(by.css('.journey-results')),
 };
