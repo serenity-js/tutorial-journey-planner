@@ -9,7 +9,7 @@ export interface JourneySummary {
     arrivalTime:   string;
 }
 
-export const JourneysFound = () => Question.where(`#actor checks the results`, actor =>
+export const JourneysFound = () => Question.about(`the journeys found`, actor =>
 
     BrowseTheWeb.as(actor).locateAll(JourneyResults.List).
         map(resultsToJourneySummaries) as PromiseLike<JourneySummary[]>,
